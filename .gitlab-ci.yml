@@ -1,0 +1,11 @@
+stages:
+  - control
+
+control:
+  stage: control
+  image: petrlorenc/python-style:latest
+  script:
+    - isort . --check-only
+    - black --check .
+    - flake8 .
+    - find . -type f -name "*.py" | xargs pylint
